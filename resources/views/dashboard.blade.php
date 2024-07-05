@@ -23,7 +23,7 @@
                     <a href="{{ route('posts.index') }}" class="bg-blue-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">
                         {{ __('体質に合った習慣をみる') }}
                     </a>
-                    <p class="text-sm mt-4">※診断をしている場合のみ表示されます。</p>
+                    <p class="text-sm mt-4">※診断をしていない場合は診断画面に移動します。</p>
             </div>
             </div>
         </div>

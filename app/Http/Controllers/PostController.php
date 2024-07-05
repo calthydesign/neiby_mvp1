@@ -19,6 +19,11 @@ class PostController extends Controller
      */
      public function index()
     {
+        $user = auth()->user();
+    
+        if ($user->construction === null) {
+            return redirect()->route('diagnoses.index')->with('message', '診断を先に行ってください。');
+        }
         $posts = Post::where('user_id', Auth::user()->id)->orderBy('created_at', 'asc')->paginate(3);
         
         $apiKey = env('OPENWEATHER_API_KEY');
@@ -30,7 +35,6 @@ class PostController extends Controller
         $data = json_decode($response->getBody()->getContents(), true);
         $weather = $data['weather'][0]['description'];
         
-        $user = auth()->user();
         $constructionId = null;
         
         switch ($user->construction) {
@@ -116,17 +120,7 @@ class PostController extends Controller
     {
         //
     }
-        public function showPosts()
-    {
-        //診断前の処理
-        $construction = auth()->user()->construction;
-    
-        if ($construction) {
-            return view('posts');
-        } else {
-            return redirect()->route('diagnosis')->with('alert', 'Construction value is not set. Please set the value.');
-        }
-    }
+        
    
     /**
      * Show the form for editing the specified resource.

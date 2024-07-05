@@ -38,20 +38,7 @@
                             {{ __('Profile') }}
                         </x-dropdown-link>
                         
-                        <!-- 診断画面へのリンク -->
-                        <x-dropdown-link :href="route('diagnoses.index')">
-                            {{ __('診断する') }}
-                        </x-dropdown-link>
-                    
-                        <!-- 診断結果画面へのリンク -->
-                        <x-dropdown-link :href="route('diagnoses-result')">
-                                {{ __('診断結果') }}
-                        </x-dropdown-link>
-                    
-                        <!-- ポスト画面へのリンク -->
-                        <x-dropdown-link :href="route('posts.index')">
-                            {{ __('習慣をみる・記録') }}
-                        </x-dropdown-link>
+                        
 
                         <!-- Authentication -->
                         <form method="POST" action="{{ route('logout') }}">
@@ -99,21 +86,7 @@
                     {{ __('Profile') }}
                 </x-responsive-nav-link>
                 
-                <!-- 診断画面へのリンク -->
-                        <x-dropdown-link :href="route('diagnoses.index')">
-                            {{ __('診断する') }}
-                        </x-dropdown-link>
-                    
-                        <!-- 診断結果画面へのリンク -->
-                        <x-dropdown-link :href="route('diagnoses-result')">
-                                {{ __('診断結果') }}
-                        </x-dropdown-link>
-                    
-                        <!-- ポスト画面へのリンク -->
-                        <x-dropdown-link :href="route('posts.index')">
-                            {{ __('習慣をみる・記録') }}
-                        </x-dropdown-link>
-
+                
                 <!-- Authentication -->
                 <form method="POST" action="{{ route('logout') }}">
                     @csrf
