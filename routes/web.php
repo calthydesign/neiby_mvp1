@@ -40,7 +40,7 @@ Route::middleware(['auth'])->group(function () {
 
     // プロフィール関連のルート
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::get('/diagnoses/result', [DiagnosisController::class, 'result'])->name('diagnoses-result');
+    Route::get('/result', [DiagnosisController::class, 'result'])->name('diagnosis.result');
     Route::get('/posts', [PostController::class, 'index'])->name('posts.index');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
@@ -53,6 +53,8 @@ Route::middleware(['auth'])->group(function () {
         Route::put('/{post}', [PostController::class, 'update'])->name('update');  // PUTメソッドに変更
         Route::delete('/{post}', [PostController::class, 'destroy'])->name('destroy');
     });
+    //診断前なら診断画面にリダイレクト
+    Route::get('/posts', [App\Http\Controllers\PostsController::class, 'showPosts'])->name('posts');
 
     // 気血水のデータ表示
     Route::get('/constructions/{id}', [ConstructionController::class, 'show'])->name('constructions.show');

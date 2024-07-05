@@ -116,6 +116,17 @@ class PostController extends Controller
     {
         //
     }
+        public function showPosts()
+    {
+        //診断前の処理
+        $construction = auth()->user()->construction;
+    
+        if ($construction) {
+            return view('posts');
+        } else {
+            return redirect()->route('diagnosis')->with('alert', 'Construction value is not set. Please set the value.');
+        }
+    }
    
     /**
      * Show the form for editing the specified resource.
