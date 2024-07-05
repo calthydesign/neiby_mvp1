@@ -19,6 +19,15 @@ class PostController extends Controller
      */
      public function index()
     {
+        //constructionの値が入っていない場合は診断画面へ飛ぶ
+        $user = Auth::user();
+        if ($user->construction) {
+            $construction = $user->construction;
+            return view('posts', compact('construction'));
+        } else {
+            return redirect()->route('diagnoses.index')->with('error', '先に診断をしてください');
+        }
+        
         $posts = Post::where('user_id', Auth::user()->id)->orderBy('created_at', 'asc')->paginate(3);
         
         $apiKey = env('OPENWEATHER_API_KEY');

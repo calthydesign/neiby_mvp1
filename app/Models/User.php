@@ -23,7 +23,6 @@ class User extends Authenticatable
         'password',
         'gender',
         'pregnancy_status',
-        'age',
     ];
 
     /**

@@ -37,6 +37,18 @@ class ProfileController extends Controller
     
         return redirect()->route('profile.edit')->with('status', 'profile-updated');
     }
+    
+    protected function validator(array $data)
+    {
+        return Validator::make($data, [
+            'name' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'age' => ['required', 'integer', 'min:0', 'max:120'],
+            'gender' => ['required', 'in:male,female'],
+            'pregnancy_status' => ['boolean'],
+        ]);
+    }
 
     /**
      * Delete the user's account.

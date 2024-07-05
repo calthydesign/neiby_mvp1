@@ -55,7 +55,7 @@
         <!-- 年齢の項目を追加 -->
         <div class="mt-4">
             <x-input-label for="age" :value="__('年齢')" />
-            <x-text-input id="age" class="block mt-1 w-full" type="number" name="age" :value="old('age')" required />
+            <x-text-input id="age" class="block mt-1 w-full" type="number" name="age" :value="old('age')" required min="0" max="120" />
             <x-input-error :messages="$errors->get('age')" class="mt-2" />
         </div>
         <!-- 性別と産前産後の項目を追加 -->
@@ -67,7 +67,7 @@
                     <span class="ml-2 text-gray-700">男性</span>
                 </label>
                 <label class="inline-flex items-center ml-4">
-                    <input type="radio" name="gender" value="female" class="form-radio h-5 w-5 text-blue-600">
+                   <input type="radio" name="gender" value="female" class="form-radio h-5 w-5 text-blue-600">
                     <span class="ml-2 text-gray-700">女性</span>
                 </label>
             </div>
@@ -77,7 +77,8 @@
             <x-input-label for="pregnancy_status" :value="__('産前産後の方は以下にチェックをつけてください。')" />
             <div class="mt-1">
                 <label class="inline-flex items-center">
-                    <input type="checkbox" name="pregnancy_status" class="form-checkbox h-5 w-5 text-blue-600">
+                    <input type="hidden" name="pregnancy_status" value="0">
+                    <input type="checkbox" name="pregnancy_status" class="form-checkbox h-5 w-5 text-blue-600" value="pregnancy_or_postpartum">
                     <span class="ml-2 text-gray-700">妊娠中または産後1年以内である</span>
                 </label>
             </div>

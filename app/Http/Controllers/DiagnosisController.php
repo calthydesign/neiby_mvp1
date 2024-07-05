@@ -19,7 +19,7 @@ class DiagnosisController extends Controller
     
     $user = Auth::user();
     if (!$user) {
-        return redirect()->route('login');  // またはエラーページにリダイレクト
+       return redirect()->route('login')->with('error', 'ログインしてください');
     }
     
     $latestDiagnosis = Diagnosis::where('user_id', $user->id)
@@ -37,6 +37,16 @@ class DiagnosisController extends Controller
 
     return view('diagnoses', compact('diagnosisData'));
 }
+    
+    public function result()
+    {
+        $user = Auth::user();
+        if ($user->construction) {
+            return view('diagnosis-result');
+        } else {
+            return redirect()->route('diagnoses.index')->with('error', '先に診断をしてください');
+        }
+    }
 
     /**
      * Show the form for creating a new resource.
