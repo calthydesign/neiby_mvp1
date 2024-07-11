@@ -6,6 +6,8 @@ use App\Http\Controllers\PostController;
 use App\Http\Controllers\ConstructionController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\ChatController;
+
 
 // ルートページ: ログイン状態と construction の値によってリダイレクト
 Route::get('/', function () {
@@ -56,4 +58,12 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/constructions/{id}', [ConstructionController::class, 'show'])->name('constructions.show');
 });
 
+
+    //チャット
+    Route::post('/chat', [ChatController::class, 'chat']);
+    // Route::get('/chat', function () {
+    // return view('chat');
+    // });
+    
+    
 require __DIR__.'/auth.php';

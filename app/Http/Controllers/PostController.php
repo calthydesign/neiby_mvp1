@@ -83,6 +83,17 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
+        // バリデーションを追加
+        $validator = Validator::make($request->all(), [
+            'condition' => 'required',
+        ]);
+    
+        // バリデーションが失敗した場合
+        if ($validator->fails()) {
+            return redirect()->route('posts.index')
+                ->withErrors($validator)
+                ->withInput();
+        }
         $apiKey = env('OPENWEATHER_API_KEY');
         $city = 'Tokyo';
         $url = "http://api.openweathermap.org/data/2.5/weather?q={$city}&appid={$apiKey}&units=metric&lang=ja";

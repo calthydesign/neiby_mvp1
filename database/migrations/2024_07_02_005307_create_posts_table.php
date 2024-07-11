@@ -17,7 +17,7 @@ return new class extends Migration
                 $table->bigInteger('user_id');              //外部キー
                 $table->string('weather')->nullable();      //天気
                 $table->string('condition');                //今日の調子
-                $table->string('memo');                     //今日のメモ
+                $table->string('memo')->nullable();         //今日のメモ
 	            $table->text('selected_tags')->nullable(); //選択したタグ
                 $table->timestamps();
         });

@@ -17,6 +17,15 @@
                 
         <!-- バリデーションエラーの表示に使用-->
         <x-errors id="errors" class="bg-blue-950 rounded-lg">{{$errors}}</x-errors> <!-- 色変更 -->
+        @if ($errors->any())
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
         <!-- バリデーションエラーの表示に使用-->
         
         <!--全エリア[START]-->

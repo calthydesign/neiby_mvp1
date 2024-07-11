@@ -4,6 +4,8 @@ namespace App\Providers;
 
 use Illuminate\Support\Facades\URL;    //この行を追加
 use Illuminate\Support\ServiceProvider;
+use OpenAI;
+
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -13,6 +15,9 @@ class AppServiceProvider extends ServiceProvider
     public function register(): void
     {
         //
+        $this->app->singleton(OpenAI\Client::class, function ($app) {
+            return OpenAI::client(config('services.openai.api_key'));
+        });
     }
 
     /**
